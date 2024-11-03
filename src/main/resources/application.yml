@@ -1,0 +1,55 @@
+server:
+  port: 8083
+  servlet:
+    session:
+      timeout: 30m
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cal104  # 필요한 경우 사용자 정보 조회를 위한 DB 연결
+    username: kjw
+    password: Teamps1004!  # 실제 비밀번호는 환경변수나 암호화된 방식으로 관리
+    driver-class-name: org.postgresql.Driver
+  redis:
+    host: localhost  # Redis 서버 호스트
+    port: 6379  # Redis 서버 포트
+  security:
+    oauth2:
+      client:
+        registration:
+          # OAuth 2.0 클라이언트 설정 (예: Google, Facebook 등)
+          google: # 아래 내용들 수정 필요
+            client-id: YOUR_CLIENT_ID
+            client-secret: YOUR_CLIENT_SECRET
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - email
+              - profile
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/userinfo/v2/me
+            user-name-attribute: id
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8787/eureka #유레카 서버에 등록합니다.
+
+logging:
+  level:
+    com.netflix.discovery: DEBUG
+    org.springframework.cloud.netflix.eureka: DEBUG
+
+jwt:
+  token:
+    secret-key: YOUR_JWT_SECRET_KEY  # JWT 비밀 키 수정 필요
+  access-token:
+    expire-length: 1800000
+    refresh-token:
+      expire-length: 1209600000

@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -60,6 +61,13 @@ public class JwtTokenProvider {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+
+    // JWT 토큰에서 사용자 정보 추출
+    public UserDetails getUserDetailsFromToken(String token, UserDetailsService userDetailsService) {
+        String username = getUsernameFromToken(token);
+        return userDetailsService.loadUserByUsername(username);
     }
 
 

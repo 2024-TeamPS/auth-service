@@ -49,6 +49,7 @@ logging:
 jwt:
   secret:
     key: YOUR_JWT_SECRET_KEY  # JWT 비밀 키 수정 필요
+  expiration: 1800000
   access-token:
     expire-length: 1800000
     refresh-token:

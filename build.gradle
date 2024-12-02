@@ -28,6 +28,9 @@ ext {
 }
 
 dependencies {
+	// Spring Authorization Server
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+
 	// Spring Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// Redis

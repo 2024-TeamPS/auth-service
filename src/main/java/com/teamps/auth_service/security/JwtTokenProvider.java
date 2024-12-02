@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
-import java.security.Key;
 import java.util.Date;
 
 @Component
@@ -21,7 +20,7 @@ public class JwtTokenProvider {
     private long validityInMilliseconds;
 
     // JWT 토큰 생성
-    public String createToken(UserDetails userDetails) {
+    public String createTJwt(UserDetails userDetails) {
         Claims claims = Jwts.claims().setSubject(userDetails.getUsername());
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
@@ -42,9 +41,8 @@ public class JwtTokenProvider {
 
 
     // JWT 토큰 검증
-    public boolean validateToken(String token, UserDetails userDetails) {
-        String username = getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    public boolean validateToken(String token) {
+        return !isTokenExpired(token);
     }
 
 
@@ -55,7 +53,7 @@ public class JwtTokenProvider {
 
 
     // 토큰에서 Claims 추출
-    private Claims parseClaims(String token) {
+    public Claims parseClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(secretKey)
                 .build()

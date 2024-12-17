@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamps.auth_service.mapper.BlackListMapper">
+
+<!--insert 의 경우 resultType 을 작성할 필요 없다-->
+<!--블랙리스트 추가 메서드-->
+    <insert id="insertBlacklist" parameterType="com.teamps.auth_service.model.BlackList">
+        INSERT INTO blacklist ("expiration", "token")
+        VALUES (#{expiration}, #{token})
+    </insert>
+
+</mapper>

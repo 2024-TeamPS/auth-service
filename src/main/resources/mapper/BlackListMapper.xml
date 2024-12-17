@@ -12,4 +12,9 @@
         VALUES (#{expiration}, #{token})
     </insert>
 
+<!--해당 토큰이 있는지 탐색하는 메서드-->
+    <select id="findByToken" parameterType="java.lang.String" resultType="com.teamps.auth_service.model.BlackList">
+        SELECT * FROM blacklist WHERE token = #{token}
+    </select>
+
 </mapper>

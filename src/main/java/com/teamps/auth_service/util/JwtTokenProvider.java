@@ -81,7 +81,7 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) {
-        BlackList blackList = blackListMapper.findById(token);
+        BlackList blackList = blackListMapper.findByToken(token);
 
         if (blackList != null) {
             return false;

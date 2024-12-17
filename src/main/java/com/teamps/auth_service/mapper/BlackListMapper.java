@@ -9,4 +9,7 @@ public interface BlackListMapper {
     // 블랙리스트 생성
     int insertBlackList(BlackList blackList);
 
+    // 해당 토큰이 있는지 탐색
+    BlackList findByToken(String token);
+
 }

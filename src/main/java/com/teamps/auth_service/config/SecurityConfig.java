@@ -2,6 +2,8 @@ package com.teamps.auth_service.config;
 
 import com.teamps.auth_service.filter.JwtAuthenticationFilter;
 import com.teamps.auth_service.util.AuthenticatedMatchers;
+import com.teamps.auth_service.util.JwtAccessDeniedHandler;
+import com.teamps.auth_service.util.JwtAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -25,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 // REST API 에서는 기본적으로 HTML 폼 로그인이 필요 없으므로 비활성화
                 .formLogin(AbstractHttpConfigurer::disable)
 
@@ -55,10 +59,14 @@ public class SecurityConfig {
                 // 이 설정을 통해 요청이 기본 인증 필터로 처리되기 전에 JWT 토큰 검증을 수행
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 
-
-                // OAuth2 로그인을 기본 설정으로 활성화
-                .oauth2Login(Customizer.withDefaults());
-        return http.build();
+                // 예외 상황 처리 설정
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        // 인증된 사용자가 필요한 리소스에 접근할 수 없을 때 처리하는 핸들러
+                        .accessDeniedHandler(new JwtAccessDeniedHandler())
+                        // 인증되지 않은 사용자가 요청 시 발생하는 예외 처리
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint()))
+                .build();
     }
+
 
 }

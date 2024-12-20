@@ -13,6 +13,8 @@ public class AuthenticatedMatchers {
             "/auth/reissue",
             "/api-docs",
             "/api-docs/**",
+            "/v3/**",
+            "/v3/api-docs/**",
             "/swagger-ui/index.html",
             "/swagger-ui/**",
             "/swagger-ui.html"

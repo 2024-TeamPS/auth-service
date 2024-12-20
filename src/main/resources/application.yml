@@ -27,8 +27,8 @@ spring:
         registration:
           # OAuth 2.0 클라이언트 설정 (예: Google, Facebook 등)
           google: # 아래 내용들 수정 필요
-            client-id: YOUR_CLIENT_ID
-            client-secret: YOUR_CLIENT_SECRET
+            client-id: 272618505727-ea93dlk04p32ff16aa8ifd6dqbte75uj.apps.googleusercontent.com
+            client-secret: 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
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope:
               - email
@@ -53,10 +53,20 @@ logging:
     org.springframework.cloud.netflix.eureka: DEBUG
 
 jwt:
-  secret:
-    key: YOUR_JWT_SECRET_KEY  # JWT 비밀 키 수정 필요
-  expiration: 1800000
+  token:
+    # 아래 수정 필요
+    secret-key: MySuperSecureKey123456789012345678901234567890
   access-token:
     expire-length: 1800000
-    refresh-token:
-      expire-length: 1209600000
+  refresh-token:
+    expire-length: 1209600000
+  redis:
+    host: localhost
+    port: 6379
+    # 아래 수정 필요
+    password: MySuperSecureKey123456789012345678901234567890
+
+jasypt:
+  encryptor:
+    # 아래 수정 필요
+    password: MySuperSecureKey123456789012345678901234567890

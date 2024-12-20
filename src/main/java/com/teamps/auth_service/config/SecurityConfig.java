@@ -1,5 +1,6 @@
 package com.teamps.auth_service.config;
 
+import com.teamps.auth_service.filter.JwtAuthenticationFilter;
 import com.teamps.auth_service.util.AuthenticatedMatchers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configurers.CsrfConfig
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -19,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final CorsConfig corsConfig;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -48,6 +51,10 @@ public class SecurityConfig {
                 // CORS(Cross-Origin Resource Sharing) 필터 추가
                 // 외부 도메인에서 서버로의 요청을 허용하기 위해 CORS 설정 적용
                 .addFilter(corsConfig.corsFilter())
+
+                // 이 설정을 통해 요청이 기본 인증 필터로 처리되기 전에 JWT 토큰 검증을 수행
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+
 
                 // OAuth2 로그인을 기본 설정으로 활성화
                 .oauth2Login(Customizer.withDefaults());

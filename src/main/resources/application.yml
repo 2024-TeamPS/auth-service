@@ -27,8 +27,8 @@ spring:
         registration:
           # OAuth 2.0 클라이언트 설정 (예: Google, Facebook 등)
           google:
-            client-id: ENC(VkteZ0qlsDkkTmNASkA9qzjO+YIpDAZUuWnRrLzbgl2kalAqeNaow5ZnWy0hd4ucqSY6Eu7amtYe0a77dNPaipoZR8us2dg51DUyWTWZ75yMFBTg+BSEhg==)
-            client-secret: ENC(zaQkR+WwCVUj7dvaDe+PzPUSlPWW1Eyx0hDuG3jFxYk/3nl6S8wY49+bTBbiIZgg)
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope:
               - email

@@ -55,7 +55,7 @@ logging:
 jwt:
   token:
     # 아래 수정 필요
-    secret-key: MySuperSecureKey123456789012345678901234567890
+    secret-key: ENC(hAM0qI7p8GLKQgsz5TGINR6tFoWf7OqeV7uUxmglkHqT0S2T7SdvMUgxbRSC42nK)
   access-token:
     expire-length: 1800000
   refresh-token:

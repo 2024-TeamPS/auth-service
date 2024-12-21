@@ -1,4 +1,4 @@
-package com.teamps.auth_service.model;
+package com.teamps.auth_service.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

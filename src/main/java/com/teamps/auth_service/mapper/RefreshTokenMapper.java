@@ -1,6 +1,6 @@
 package com.teamps.auth_service.mapper;
 
-import com.teamps.auth_service.model.RefreshToken;
+import com.teamps.auth_service.domain.RefreshToken;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

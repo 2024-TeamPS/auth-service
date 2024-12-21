@@ -6,7 +6,7 @@ import com.teamps.auth_service.dto.response.TokenResponse;
 import com.teamps.auth_service.mapper.BlackListMapper;
 import com.teamps.auth_service.mapper.RefreshTokenMapper;
 import com.teamps.auth_service.model.BlackList;
-import com.teamps.auth_service.model.RefreshToken;
+import com.teamps.auth_service.domain.RefreshToken;
 import com.teamps.auth_service.util.JwtTokenProvider;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;

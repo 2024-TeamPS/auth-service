@@ -68,5 +68,4 @@ jwt:
 
 jasypt:
   encryptor:
-    # 아래 수정 필요
-    password: MySuperSecureKey123456789012345678901234567890
+    password: ${JASYPT_KEY}

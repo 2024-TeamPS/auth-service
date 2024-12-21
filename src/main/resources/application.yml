@@ -26,9 +26,9 @@ spring:
       client:
         registration:
           # OAuth 2.0 클라이언트 설정 (예: Google, Facebook 등)
-          google: # 아래 내용들 수정 필요
-            client-id: 272618505727-ea93dlk04p32ff16aa8ifd6dqbte75uj.apps.googleusercontent.com
-            client-secret: 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
+          google:
+            client-id: ENC(VkteZ0qlsDkkTmNASkA9qzjO+YIpDAZUuWnRrLzbgl2kalAqeNaow5ZnWy0hd4ucqSY6Eu7amtYe0a77dNPaipoZR8us2dg51DUyWTWZ75yMFBTg+BSEhg==)
+            client-secret: ENC(zaQkR+WwCVUj7dvaDe+PzPUSlPWW1Eyx0hDuG3jFxYk/3nl6S8wY49+bTBbiIZgg)
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope:
               - email
@@ -54,7 +54,6 @@ logging:
 
 jwt:
   token:
-    # 아래 수정 필요
     secret-key: ENC(hAM0qI7p8GLKQgsz5TGINR6tFoWf7OqeV7uUxmglkHqT0S2T7SdvMUgxbRSC42nK)
   access-token:
     expire-length: 1800000
